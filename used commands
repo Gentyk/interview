@@ -1,0 +1,11 @@
+Сюда будут писаться используемые за день команды 
+
+MariaDB
+
+docker run --name mariadbtest -p 6000:3306 -e MYSQL_ROOT_PASSWORD=mypass -d mariadb
+mysql -P 6000 --protocol=TCP -u root -p
+
+(или
+mysql -h 172.17.0.2 -u root -p
+или
+mysql -h 172.17.0.2 -P 3306 --protocol=TCP -u root -p)
