@@ -9,3 +9,22 @@ mysql -P 6000 --protocol=TCP -u root -p
 mysql -h 172.17.0.2 -u root -p
 или
 mysql -h 172.17.0.2 -P 3306 --protocol=TCP -u root -p)
+
+как можно изменить порядок наследования
+class A:
+    def p(self):
+        print(1)
+
+class B:
+    def p(self):
+        print(2)
+
+class C(A, B):
+    f = B.p
+    def k(self):
+
+        self.f()
+
+d = C()
+d.k()
+
