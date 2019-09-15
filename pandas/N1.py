@@ -60,13 +60,14 @@ for company in companies:
 
     # итоговые результаты на компанию
     new_row = columns.copy()
-    new_row['id'] = company
+    #new_row['id'] = company
     summ = 0
 
     for d in date:
         new_row[d] = local_DF[d].sum()
         summ += local_DF[d].sum()
     new_row['план'] = local_DF['план'].sum()
+    new_row['id'] = company + ' План ' + str(local_DF['план'].sum()) + "              Итог осталось"
     new_row['итог'] = summ
     local_DF = local_DF.append(new_row.copy(), ignore_index=True)
     #print(local_DF)
