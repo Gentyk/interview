@@ -81,7 +81,7 @@ def main(filename, big_sheet, company_sheet, result_filename):
     Global_GF.columns = new_column_names
     print(Global_GF.columns)
     with pd.ExcelWriter(result_filename) as writer:
-        Global_GF.to_excel(writer, index=False)
+        Global_GF.to_excel(writer, index=False, startrow=1)
 
 if __name__ == '__main__':
     filename = "6vip.xls"   # имя входного файла или путь
