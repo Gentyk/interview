@@ -82,6 +82,12 @@ def main(filename, big_sheet, company_sheet, result_filename):
     print(Global_GF.columns)
     with pd.ExcelWriter(result_filename) as writer:
         Global_GF.to_excel(writer, index=False, startrow=1)
+    
+    # текущую дату добавляем на первую строку во вторую ячейку
+    workbook = xlsxwriter.Workbook(result_filename)
+    worksheet = workbook.add_worksheet()
+    worksheet.write(0, 1, datetime.now().strftime("%d.%m.%Y"))
+    workbook.close()
 
 if __name__ == '__main__':
     filename = "6vip.xls"   # имя входного файла или путь
