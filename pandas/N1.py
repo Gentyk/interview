@@ -77,7 +77,13 @@ def main(filename, big_sheet, company_sheet, result_filename):
     new_column_names = []
     for i in columns:
         if i in date:
-            new_column_names.append(f'{i.day}.{i.month}.{i.year}')
+            day = str(i.day)
+            month = str(i.month)
+            if  len(day) == 1:
+                day = "0"+day
+            if  len(month) == 1:
+                month = "0"+month                
+            new_column_names.append(f'{day}.{month}.{i.year}')
         else:
             new_column_names.append(i)
     Global_GF.columns = new_column_names
