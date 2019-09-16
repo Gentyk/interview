@@ -2,7 +2,8 @@ from datetime import date as date_lib
 from datetime import datetime
 import pandas as pd
 from pandas import DataFrame
-import xlsxwriter
+from xlrd import open_workbook
+from xlutils.copy import copy
 
 
 def main(filename, big_sheet, company_sheet, result_filename):
@@ -86,10 +87,11 @@ def main(filename, big_sheet, company_sheet, result_filename):
         Global_GF.to_excel(writer, index=False, startrow=1)
     
     # текущую дату добавляем на первую строку во вторую ячейку
-    workbook = xlsxwriter.Workbook(result_filename)
-    worksheet = workbook.add_worksheet()
-    worksheet.write(0, 1, datetime.now().strftime("%d.%m.%Y"))
-    workbook.close()
+    rb = open_workbook(result_filename)
+    wb = copy(rb)
+    s = wb.get_sheet(0)
+    s.write(0, 1, datetime.now().strftime("%d.%m.%Y"))
+    wb.save(result_filename)
 
 if __name__ == '__main__':
     filename = "6vip.xls"   # имя входного файла или путь
