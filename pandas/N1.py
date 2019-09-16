@@ -23,7 +23,7 @@ def main(filename, big_sheet, company_sheet, result_filename):
 
     # формирование выходного файла
     # для начала сформируем пустую строку (кличи - это имена столбцов)
-    columns = {"id": None, "name": None}
+    columns = {"id": None, "Наименование": None}
     for d in date:
         columns[d] = 0
     columns['итог'] = 0
@@ -47,8 +47,8 @@ def main(filename, big_sheet, company_sheet, result_filename):
                 new_row[x['Дата кон.']] += int(x['Остаток'])
                 summ += int(x['Остаток'])
                 summ_plan += int(x['План'])
-                if not new_row['name']:
-                    new_row['name'] = x['Наименование']
+                if not new_row['Наименование']:
+                    new_row['Наименование'] = x['Наименование']
             new_row['id'] = id
             new_row['итог'] = summ
             new_row['план'] = summ_plan
