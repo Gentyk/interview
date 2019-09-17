@@ -4,6 +4,9 @@ import pandas as pd
 from pandas import DataFrame
 from xlrd import open_workbook
 from xlutils.copy import copy
+import locale
+
+locale.setlocale(locale.LC_ALL, 'rus_rus')
 
 
 def main(filename, big_sheet, company_sheet, result_filename):
@@ -78,7 +81,7 @@ def main(filename, big_sheet, company_sheet, result_filename):
     new_column_names = []
     for i in columns:
         if i in date:
-            new_column_names.append(date_lib(i.year, i.month, i.day))
+            new_column_names.append(date_lib(i.year, i.month, i.day).strftime("%d %b"))
         else:
             new_column_names.append(i)
     Global_GF.columns = new_column_names
@@ -86,6 +89,7 @@ def main(filename, big_sheet, company_sheet, result_filename):
     
     # Замена нулевых значений на пустоту
     Global_GF = Global_GF.replace(0, "")
+    
     with pd.ExcelWriter(result_filename) as writer:
         Global_GF.to_excel(writer, index=False, startrow=1)
     
@@ -93,7 +97,7 @@ def main(filename, big_sheet, company_sheet, result_filename):
     rb = open_workbook(result_filename)
     wb = copy(rb)
     s = wb.get_sheet(0)
-    s.write(0, 1, datetime.now().strftime("%d.%m.%Y"))
+    s.write(0, 1, datetime.now().strftime("%B %Y"))
     wb.save(result_filename)
 
 if __name__ == '__main__':
