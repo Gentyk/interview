@@ -83,6 +83,9 @@ def main(filename, big_sheet, company_sheet, result_filename):
             new_column_names.append(i)
     Global_GF.columns = new_column_names
     print(Global_GF.columns)
+    
+    # Замена нулевых значений на пустоту
+    Global_GF = Global_GF.replace(0, "")
     with pd.ExcelWriter(result_filename) as writer:
         Global_GF.to_excel(writer, index=False, startrow=1)
     
