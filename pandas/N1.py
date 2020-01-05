@@ -40,6 +40,9 @@ def main(filename, big_sheet, company_sheet, result_filename):
         # для каждой комании получаем id товаров без повторений
         new_table_data = []
         data_df = big_df.loc[big_df['Примечание'].isin([company])]
+        if data_df.empty:
+            print(f'Компания {company} не найдена в большой таблице.')
+            continue
         ids = list(pd.unique(data_df['Id_125']))
 
         # далее формируем строки (один товар - одна строка)
