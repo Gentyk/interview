@@ -1,5 +1,6 @@
 from random import randint
 
+
 class Tree:
     def __init__(self, parent, value):
         self.parent = parent
@@ -51,6 +52,7 @@ def mass_to_three(array):
         else:
             three.set(val)
     return three
+
 
 array = [randint(1, 900) for i in range(9)]
 three = mass_to_three(array)

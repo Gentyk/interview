@@ -5,4 +5,4 @@ class Name:
 
 
 f = Name()
-print(f(1,2))
+print(f(1, 2))

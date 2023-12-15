@@ -1,5 +1,4 @@
 class Deskr:
-
     def __init__(self, value):
         self.value = value
 
@@ -14,9 +13,10 @@ class Deskr:
         print("set value")
         self.value = value
 
-class A:
 
+class A:
     a = Deskr(12)
+
 
 b = A()
 b.a = 20

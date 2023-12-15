@@ -8,11 +8,12 @@ class Prop:
             return self
         return self.func(instance)
 
-class A:
 
+class A:
     @Prop
     def f(self):
         return "кошмар"
+
 
 a = A()
 print(a.f)
