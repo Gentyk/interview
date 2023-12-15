@@ -3,6 +3,7 @@ import tornado.web
 from tornado import gen
 from tornado import httpclient
 
+
 class MainHandler(tornado.web.RequestHandler):
     @gen.coroutine
     def get(self):
@@ -15,13 +16,16 @@ class MainHandler(tornado.web.RequestHandler):
         except Exception as e:
             self.write("Error: " + str(e))
         http_client.close()
-        #self.finish()
+        # self.finish()
 
 
 def make_app():
-    return tornado.web.Application([
-        (r"/", MainHandler),
-    ])
+    return tornado.web.Application(
+        [
+            (r"/", MainHandler),
+        ]
+    )
+
 
 if __name__ == "__main__":
     app = make_app()
